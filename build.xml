@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="challenges" basedir=".">
+    <property name="src.dir" value="src" />
+    <property name="bin.dir" value="bin" />
+
+    <target name="init">
+        <mkdir dir="${src.dir}" />
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${bin.dir}" />
+        <javac source="1.6" target="1.6" srcdir="${src.dir}"
+            destdir="${bin.dir}" fork="true" />
+    </target>
+</project>
