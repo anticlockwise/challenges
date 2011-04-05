@@ -20,6 +20,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
 #include <iterator>
 #include <algorithm>
 
@@ -37,6 +38,7 @@ struct contestant {
     contestant(int n=-1) {
         number = n;
         penalty = 0;
+        problems_solved = 0;
 
         int i;
         for (i = 0; i < MAXP; i++) {
@@ -51,28 +53,31 @@ struct contestant {
             problems_solved++;
         }
     }
-
-    bool operator < (contestant c) const {
-        bool smaller = false;
-
-        if (problems_solved < c.problems_solved) {
-            smaller = true;
-        } else if (problems_solved == c.problems_solved) {
-            if (penalty < c.penalty) {
-                smaller = true;
-            } else if (penalty == c.penalty) {
-                smaller = (number < c.number);
-            }
-        }
-
-        return smaller;
-    }
 };
+
+bool compare_contestants(const contestant &a, const contestant &b) {
+    bool bigger = true;
+
+    if (a.problems_solved < b.problems_solved) {
+        bigger = false;
+    } else if (a.problems_solved == b.problems_solved) {
+        if (a.penalty < b.penalty) {
+            bigger = false;
+        } else if (a.penalty == b.penalty) {
+            bigger = (a.number >= b.penalty);
+        }
+    }
+
+    return bigger;
+}
 
 int main() {
     int ncases;
     string line;
     map<int, contestant> ct_map;
+    map<int, contestant>::iterator it;
+    vector<contestant> sort_list;
+    vector<contestant>::iterator sit;
     int cid, problem, time;
     char result;
     int i;
@@ -84,8 +89,6 @@ int main() {
     for (i = 0; i < ncases; i++) {
         getline(cin, line);
         while (line != "") {
-            cout << line << endl;
-            getline(cin, line);
             sscanf(line.c_str(), "%d %d %d %c", &cid,
                     &problem, &time, &result);
 
@@ -93,6 +96,7 @@ int main() {
             if (ct_map.find(cid) == ct_map.end()) {
                 c = new contestant(cid);
                 ct_map[cid] = *c;
+                c = &ct_map[cid];
             } else {
                 c = &ct_map[cid];
             }
@@ -107,9 +111,21 @@ int main() {
                 default:
                     break;
             }
+            getline(cin, line);
+        }
+
+        for (it = ct_map.begin(); it != ct_map.end(); it++) {
+            sort_list.push_back(it->second);
+        }
+        sort(sort_list.begin(), sort_list.end(), compare_contestants);
+
+        for (sit = sort_list.begin(); sit != sort_list.end(); sit++) {
+            contestant c = *sit;
+            cout << c.number << " " << c.problems_solved << " " << c.penalty << endl;
         }
         cout << endl;
 
-        sort(ct_map.begin(), ct_map.end());
+        ct_map.clear();
+        sort_list.clear();
     }
 }
