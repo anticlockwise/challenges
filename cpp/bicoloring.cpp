@@ -1,5 +1,7 @@
 #include <iostream>
 #include <queue>
+#include <map>
+#include <iterator>
 
 using namespace std;
 
@@ -48,19 +50,19 @@ struct graph {
         edges[w] = pv;
     }
 
-    void color(int start, int c) {
+    void color(int start) {
         int v;
         queue<int> q;
         edgenode *p;
 
         q.push(start);
         visited[start] = true;
-        colors[start] = c;
 
         while (!q.empty()) {
             v = q.front();
             q.pop();
 
+            int c = colors[v];
             c = (c + 1) % 2;
             p = edges[v];
             while (p != NULL) {
@@ -81,6 +83,8 @@ struct graph {
 int main() {
     int nvertices, nedges;
     int i, from, to;
+    map<int, bool> nodes;
+    map<int, bool>::iterator it;
     graph *g;
 
     while (cin >> nvertices) {
@@ -91,11 +95,21 @@ int main() {
         cin >> nedges;
 
         for (i = 0; i < nedges; i++) {
+            if (nodes.find(from) == nodes.end())
+                nodes[from] = true;
+            if (nodes.find(to) == nodes.end())
+                nodes[to] = true;
+
             cin >> from >> to;
             g->insert_edge(from, to);
         }
 
-        g->color(0, 0);
+        for (it = nodes.begin(); it != nodes.end(); it++) {
+            if (!g->visited[it->first]) {
+                g->colors[it->first] = 0;
+                g->color(it->first);
+            }
+        }
         if (g->bicolor) {
             cout << "BICOLORABLE." << endl;
         } else {
@@ -103,6 +117,7 @@ int main() {
         }
 
         delete g;
+        nodes.clear();
     }
     return 0;
 }
