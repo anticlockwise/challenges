@@ -46,7 +46,7 @@ bool compare_x (const point &p1, const point &p2) {
 }
 
 bool compare_y (const point &p1, const point &p2) {
-    return p1.x < p2.x;
+    return p1.y < p2.y;
 }
 
 bool compare_d (const pair<point, double> &d1, const pair<point, double> &d2) {
