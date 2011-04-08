@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <map>
 #include <queue>
 #include <cstdio>
@@ -87,7 +88,7 @@ int insert_name(map<string, int> &id_map, string name) {
     return id;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int nveterans, naccuses, nliars, ntruths;
     int i, j;
     string line;
@@ -96,17 +97,19 @@ int main() {
     map<string, int>::iterator it;
     graph *g;
 
-    getline(cin, line);
+    ifstream input(argv[1]);
+
+    getline(input, line);
     sscanf(line.c_str(), "%d", &nveterans);
     g = new graph(nveterans);
 
     for (i = 0; i < nveterans; i++) {
-        getline(cin, line);
+        getline(input, line);
         sscanf(line.c_str(), "%s %d", buf, &naccuses);
         int from = insert_name(id_map, buf);
 
         for (j = 0; j < naccuses; j++) {
-            getline(cin, line);
+            getline(input, line);
             sscanf(line.c_str(), "%s", buf);
             int to = insert_name(id_map, buf);
 

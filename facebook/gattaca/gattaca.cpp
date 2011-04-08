@@ -1,11 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
-
-const int MAXN = 1000000;
 
 struct gene {
     int start;
@@ -23,28 +22,32 @@ bool compare(const gene &g1, const gene &g2) {
     return g1.stop < g2.stop;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int len_dna, ngene;
     char c;
     int i, j, start, stop, score;
-    int max_scores[MAXN + 1], parents[MAXN];
+    vector<int> max_scores, parents;
     int global_max = 0, global_maxi = -1;
     vector<gene> predictions;
     gene g, *p, *q;
 
-    for (i = 0; i < MAXN; i++) {
+    ifstream input(argv[1]);
+
+    input >> len_dna;
+    for (i = len_dna - 1; i >= 0; i--) {
+        input >> c;
+    }
+
+    input >> ngene;
+    max_scores.resize(ngene + 1);
+    parents.resize(ngene + 1);
+    for (i = 0; i < ngene + 1; i++) {
         max_scores[i] = 0;
         parents[i] = -1;
     }
 
-    cin >> len_dna;
-    for (i = len_dna - 1; i >= 0; i--) {
-        cin >> c;
-    }
-
-    cin >> ngene;
     for (i = 0; i < ngene; i++) {
-        cin >> g.start >> g.stop >> g.score;
+        input >> g.start >> g.stop >> g.score;
         predictions.push_back(g);
     }
 

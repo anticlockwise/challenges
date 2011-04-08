@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <sstream>
 #include <cstdio>
@@ -124,7 +125,7 @@ void find_cliques(graph *g, bitset<MAXV> &inclique,
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     map<int, map<int, bool> > table;
     string line, part, email_from, email_to;
     map<string, int> email_map;
@@ -134,8 +135,10 @@ int main() {
     bitset<MAXV> vertices, clique, notclique;
     vector<bitset<MAXV> > result;
 
+    ifstream input(argv[1]);
+
     g = new graph();
-    while(getline(cin, line)) {
+    while(getline(input, line)) {
         istringstream is(line);
         for (i = 0; i < 6; i++) {
             is >> part;

@@ -17,6 +17,7 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 #include <cfloat>
@@ -124,13 +125,15 @@ void nearest_k (vector<point> tree, int cur_node, point p, int k,
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     vector<point> friends;
     vector<point> tree;
     point p;
     int i, j, nfriends=0, nnodes=1;
 
-    while (cin >> p.id >> p.x >> p.y) {
+    ifstream input(argv[1]);
+
+    while (input >> p.id >> p.x >> p.y) {
         friends.push_back(p);
         nfriends++;
     }

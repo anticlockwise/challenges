@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
@@ -121,7 +122,7 @@ vector<base> find_best(vector<base> cand, int nzergs) {
     return result;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int nplanets, nbases, nzergs, terrans, zergs, minerals, mcaptured;
     vector<vector<base> > cand_map;
     vector<vector<base> > candidates;
@@ -129,12 +130,14 @@ int main() {
     base b;
     int i, j, k;
 
-    cin >> nplanets;
+    ifstream input(argv[1]);
+
+    input >> nplanets;
 
     for (i = 0; i < nplanets; i++) {
-        cin >> nbases >> nzergs;
+        input >> nbases >> nzergs;
         for (j = 0; j < nbases; j++) {
-            cin >> terrans >> minerals;
+            input >> terrans >> minerals;
             if (feasible(terrans, nzergs, minerals)) {
                 zergs = zergs_needed(terrans, minerals);
                 int last_gain = -1;

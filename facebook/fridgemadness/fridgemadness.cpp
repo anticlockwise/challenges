@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <map>
 #include <algorithm>
@@ -185,24 +186,26 @@ vector<pair<int, int> > matches(map<int, vector<pair<int, int> > > scores,
     return pairs;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int ndrinks, nengineers;
     string line;
     int i, n, id, pref;
     map<int, engineer> engineers;
 
-    getline(cin, line);
+    ifstream input(argv[1]);
+
+    getline(input, line);
     sscanf(line.c_str(), "%d %d", &nengineers, &ndrinks);
 
     for (i = 0; i < ndrinks; i++)
-        getline(cin, line);
+        getline(input, line);
 
     for (i = 0; i < nengineers; i++) {
         engineer e;
         char *p;
         int pos;
 
-        getline(cin, line);
+        getline(input, line);
         while ((pos = line.find(",", 0)) != -1)
             line.replace(pos, 1, " ");
 

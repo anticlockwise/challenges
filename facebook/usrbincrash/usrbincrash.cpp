@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <vector>
 #include <cstdio>
@@ -6,8 +7,6 @@
 #include <climits>
 
 using namespace std;
-
-#define MAXN 100000000
 
 struct cargo {
     string name;
@@ -38,7 +37,7 @@ int gcd(int x, int y) {
     return x;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int target;
     vector<cargo> cargos;
     vector<int> cost;
@@ -47,15 +46,13 @@ int main() {
     string line;
     char name[1024];
     int weight, value, g, i, j;
-    cost.resize(MAXN);
 
-    for (i = 0; i < MAXN; i++)
-        cost[i] = INT_MAX;
+    ifstream input(argv[1]);
 
-    getline(cin, line);
+    getline(input, line);
     sscanf(line.c_str(), "%d", &target);
 
-    while (getline(cin, line)) {
+    while (getline(input, line)) {
         sscanf(line.c_str(), "%s %d %d", name, &weight, &value);
         ca.name = name;
         ca.weight = weight;
@@ -73,6 +70,10 @@ int main() {
         p = &cargos[i];
         p->weight /= g;
     }
+
+    cost.resize(target + 1);
+    for (i = 0; i <= target; i++)
+        cost[i] = INT_MAX;
 
     int size = cargos.size();
     cost[0] = 0;
