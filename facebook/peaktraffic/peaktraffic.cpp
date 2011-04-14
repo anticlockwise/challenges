@@ -1,3 +1,23 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  peaktraffic.cpp
+ *
+ *    Description:  Facebook Puzzle Peak Traffic: Finding cliques in the graph (Bron-
+ *                  Keberosch Algorithm)
+ *
+ *        Version:  1.0
+ *        Created:  14/04/11 10:57:20
+ *       Revision:  none
+ *       Compiler:  g++
+ *
+ *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
+
 #include <iostream>
 #include <fstream>
 #include <string>

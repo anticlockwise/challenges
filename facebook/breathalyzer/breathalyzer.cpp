@@ -3,12 +3,12 @@
  *
  *       Filename:  breathalyzer.cpp
  *
- *    Description:  Facebook Puzzles Breathalyzer
+ *    Description:  Facebook Puzzles Breathalyzer - Levenshtein Distance + Pruning
  *
  *        Version:  1.0
  *        Created:  04/11/2011 20:23:49
  *       Revision:  none
- *       Compiler:  gcc
+ *       Compiler:  g++
  *
  *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
  *        Company:  
@@ -23,12 +23,16 @@
 #include <algorithm>
 #include <vector>
 #include <climits>
+#include <cmath>
 
 using namespace std;
 
 const int MAXLEN = 100;
 
-int edit_distance(string s, string t, int len_s, int len_t) {
+inline int edit_distance(string s, string t, int len_s, int len_t, int min_dist) {
+    if (abs(len_s - len_t) >= min_dist)
+        return min_dist;
+
     int i, j, k;
     int opt[3];
     int d[MAXLEN][MAXLEN];
@@ -62,9 +66,8 @@ int main(int argc, char *argv[]) {
     int total_distance = 0;
     map<string, int> dictionary;
     map<string, int>::iterator it;
-    map<string, int> min_dists;
     ifstream words("/var/tmp/twl06.txt");
-    string word;
+    string word, min_word;
     while (words >> word) {
         transform(word.begin(), word.end(),
                 word.begin(), ::tolower);
@@ -77,23 +80,26 @@ int main(int argc, char *argv[]) {
         int len_s = word.size();
         transform(word.begin(), word.end(),
                 word.begin(), ::tolower);
+
         if (dictionary.find(word) != dictionary.end())
             continue;
 
-        if (min_dists.find(word) != min_dists.end()) {
-            total_distance += min_dists[word];
-            continue;
-        }
-
         for (it = dictionary.begin(); it != dictionary.end(); ++it) {
-            int dist = edit_distance(word, it->first, len_s, it->second);
+            int dist = edit_distance(word, it->first, len_s, it->second, min_dist);
+            if (dist == 1) {
+                min_dist = dist;
+                min_word = it->first;
+                break;
+            }
             if (dist < min_dist) {
                 min_dist = dist;
+                min_word = it->first;
             }
         }
-        min_dists[word] = min_dist;
         total_distance += min_dist;
     }
 
     cout << total_distance << endl;
+
+    return 0;
 }

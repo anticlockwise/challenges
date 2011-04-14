@@ -1,3 +1,22 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  usrbincrash.cpp
+ *
+ *    Description:  Facebook Puzzle User Bin Crash: Dynamic Programming
+ *
+ *        Version:  1.0
+ *        Created:  14/04/11 11:02:47
+ *       Revision:  none
+ *       Compiler:  g++
+ *
+ *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
+
 #include <iostream>
 #include <fstream>
 #include <algorithm>

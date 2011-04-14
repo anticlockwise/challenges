@@ -1,3 +1,23 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  swarm.cpp
+ *
+ *    Description:  Facebook Puzzle We're the Swarm - Change the equation, a typical
+ *                  combinatorial problem: backtracking + memorization table.
+ *
+ *        Version:  1.0
+ *        Created:  14/04/11 11:01:08
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
+
 #include <iostream>
 #include <fstream>
 #include <vector>

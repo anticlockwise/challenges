@@ -3,12 +3,13 @@
  *
  *       Filename:  smallworld.cpp
  *
- *    Description:  Facebook Puzzle - Snack Level: It's A Small World
+ *    Description:  Facebook Puzzle It's A Small World: KD-Tree + K-Nearest Neighbour
+ *                  Search
  *
  *        Version:  1.0
  *        Created:  04/06/2011 20:49:56
  *       Revision:  none
- *       Compiler:  gcc
+ *       Compiler:  g++
  *
  *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
  *        Company:  

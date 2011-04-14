@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  gattaca.cpp
+ *
+ *    Description:  Facebook Puzzle - Gattaca: Dynamic Programming
+ *
+ *        Version:  1.0
+ *        Created:  14/04/11 10:55:11
+ *       Revision:  none
+ *       Compiler:  g++
+ *
+ *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>

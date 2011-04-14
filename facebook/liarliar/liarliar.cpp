@@ -1,3 +1,22 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  liarliar.cpp
+ *
+ *    Description:  Facebook Puzzle Liar Liar: Bicoloring (Graph BFS)
+ *
+ *        Version:  1.0
+ *        Created:  14/04/11 10:56:04
+ *       Revision:  none
+ *       Compiler:  g++
+ *
+ *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
+
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -89,7 +108,7 @@ int insert_name(map<string, int> &id_map, string name) {
 }
 
 int main(int argc, char *argv[]) {
-    int nveterans, naccuses, nliars, ntruths;
+    int nveterans, naccuses, nliars=0, ntruths=0;
     int i, j;
     string line;
     char buf[1024];

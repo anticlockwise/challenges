@@ -1,3 +1,22 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  fridgemadness.cpp
+ *
+ *    Description:  Facebook Puzzle - Refridgerator Madness: Using Single Matching
+ *                  Algorithm
+ *
+ *        Version:  1.0
+ *        Created:  14/04/11 10:53:03
+ *       Revision:  none
+ *       Compiler:  g++
+ *
+ *         Author:  Rongzhou Shen (rshen), anticlockwise5@gmail.com
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
 #include <iostream>
 #include <fstream>
 #include <vector>
